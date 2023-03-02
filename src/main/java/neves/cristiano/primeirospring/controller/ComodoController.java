@@ -47,13 +47,18 @@ public class ComodoController {
         return response;
     }
 
-    @PutMapping
-    public ComodoResponse update(String id, ComodoRequest comodoRequest) {
-        return new ComodoResponse();
+    @PutMapping("{id}")
+    public ComodoResponse update(@PathVariable String id, @RequestBody ComodoRequest comodoRequest) {
+        Comodo comodo = comodoService.obter(id);
+        BeanUtils.copyProperties(comodoRequest, comodo);
+        comodo = comodoService.atualizar(comodo);
+        ComodoResponse response = new ComodoResponse();
+        BeanUtils.copyProperties(comodo, response);
+        return response;
     }
 
-    @DeleteMapping
-    public void delete(String id) {
-
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id) {
+        comodoService.delete(id);
     }
 }

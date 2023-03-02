@@ -30,4 +30,15 @@ public class ComodoService {
         comodoRepository.findAll().forEach(comodo -> lista.add(comodo));
         return lista;
     }
+
+    public Comodo atualizar(Comodo comodo) {
+        comodo.setUltimoUpdate(LocalDateTime.now());
+        return comodoRepository.save(comodo);
+    }
+
+    public Comodo delete(String id) {
+        Comodo comodo = comodoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+        comodoRepository.delete(comodo);
+        return comodo;
+    }
 }
