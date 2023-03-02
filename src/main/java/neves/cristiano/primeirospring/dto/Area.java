@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Area {
-    private Comodo comodo;
+    private ComodoRequest comodo;
     public Float getAreaPiso() {
         return comodo.getLargura() * comodo.getComprimento();
     }

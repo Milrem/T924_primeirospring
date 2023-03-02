@@ -3,7 +3,7 @@ package neves.cristiano.primeirospring.dto;
 import lombok.Data;
 
 @Data
-public class Comodo {
+public class ComodoRequest {
     private String nome;
     private Float largura;
     private Float comprimento;
