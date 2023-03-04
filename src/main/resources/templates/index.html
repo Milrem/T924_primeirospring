@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comodos</title>
+    <link href="style.css">
+</head>
+<body>
+<div th:switch="${#lists.size(comodos)}">
+    <h2 th:case="0">Não existem comodos registrados!</h2>
+    <div th:case="*">
+        <h2>Comodos</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Largura</th>
+                <th>Comprimento</th>
+                <th>Altura</th>
+                <th>Última atualização</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="comodo : ${comodos}">
+                <td th:text="${comodo.nome}"></td>
+                <td th:text="${comodo.largura}"></td>
+                <td th:text="${comodo.comprimento}"></td>
+                <td th:text="${comodo.altura}"></td>
+                <td th:text="${#temporals.format(comodo.ultimoUpdate, 'dd/MM/yyyy HH:mm:ss')}"></td>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${comodo.id})}">Editar</a>
+                    <a th:href="@{/delete/{id}(id=${comodo.id})}">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/novo-comodo">Adicionar um novo comodo</a></p>
+</div>
+</body>
+</html>

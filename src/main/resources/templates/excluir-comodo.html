@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cômodos</title>
+</head>
+<body>
+<form action="#" th:action="@{/excluir/{id}(id=${comodo.id})}" th:object="${comodo}" th:method = "PUT">
+    Nome: <span th:text="${comodo.nome}"></span>
+  <br />
+    Largura: <span th:text="${comodo.largura}"></span>
+  <br />
+    Comprimento: <span th:text="${comodo.comprimento}"></span>
+  <br />
+    Altura: <span th:text="${comodo.altura}"></span>
+
+  <input type="submit" name="save" value="Excluir cômodo" />
+</form>
+</body>
+</html>
