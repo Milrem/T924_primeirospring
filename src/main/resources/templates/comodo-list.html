@@ -29,14 +29,14 @@
                 <td th:text="${comodo.altura}"></td>
                 <td th:text="${#temporals.format(comodo.ultimoUpdate, 'dd/MM/yyyy HH:mm:ss')}"></td>
                 <td>
-                    <a th:href="@{/edit/{id}(id=${comodo.id})}">Editar</a>
-                    <a th:href="@{/delete/{id}(id=${comodo.id})}">Excluir</a>
+                    <a th:href="@{/comodo-edit/{id}(id=${comodo.id})}">Editar</a>
+                    <a th:href="@{/comodo-delete/{id}(id=${comodo.id})}">Excluir</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/novo-comodo">Adicionar um novo comodo</a></p>
+    <p><a href="/comodo-new">Adicionar um novo comodo</a></p>
 </div>
 </body>
 </html>

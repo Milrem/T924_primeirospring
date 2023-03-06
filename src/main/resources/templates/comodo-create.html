@@ -5,7 +5,7 @@
   <title>Cômodos</title>
 </head>
 <body>
-<form action="#" th:action="@{/addcomodo}" th:object="${comodo}" method = "POST">
+<form action="#" th:action="@{/comodo-add}" th:object="${comodo}" method = "POST">
   Nome: <input type="text" th:field="*{nome}" name = "name">
   <br />
   Largura: <input type="text" th:field="*{largura}" name = "largura" />

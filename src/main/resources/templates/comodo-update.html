@@ -5,7 +5,7 @@
     <title>Cômodos</title>
 </head>
 <body>
-<form action="#" th:action="@{/update/{id}(id=${comodo.id})}" th:object="${comodo}" th:method = "PUT">
+<form action="#" th:action="@{/comodo-save/{id}(id=${comodo.id})}" th:object="${comodo}" method = "POST">
   Nome: <input type="text" th:field="*{nome}" name = "name">
   <br />
   Largura: <input type="text" th:field="*{largura}" name = "largura" />
