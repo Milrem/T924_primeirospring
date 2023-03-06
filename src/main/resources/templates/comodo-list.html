@@ -17,7 +17,6 @@
                 <th>Largura</th>
                 <th>Comprimento</th>
                 <th>Altura</th>
-                <th>Última atualização</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -27,7 +26,6 @@
                 <td th:text="${comodo.largura}"></td>
                 <td th:text="${comodo.comprimento}"></td>
                 <td th:text="${comodo.altura}"></td>
-                <td th:text="${#temporals.format(comodo.ultimoUpdate, 'dd/MM/yyyy HH:mm:ss')}"></td>
                 <td>
                     <a th:href="@{/comodo-edit/{id}(id=${comodo.id})}">Editar</a>
                     <a th:href="@{/comodo-delete/{id}(id=${comodo.id})}">Excluir</a>

@@ -19,10 +19,7 @@ public class ComodoController {
     @PostMapping
     public String create(@RequestBody ComodoRequest request) {
         Comodo comodo = new Comodo();
-        comodo.setNome(request.getNome());
-        comodo.setLargura(request.getLargura());
-        comodo.setComprimento(request.getComprimento());
-        comodo.setAltura(request.getAltura());
+        BeanUtils.copyProperties(request, comodo);
         comodo = comodoService.criar(comodo);
         return comodo.getId();
     }
@@ -40,10 +37,7 @@ public class ComodoController {
     public ComodoResponse read(@PathVariable String id) {
         Comodo comodo = comodoService.obter(id);
         ComodoResponse response = new ComodoResponse();
-        response.setNome(comodo.getNome());
-        response.setComprimento(comodo.getComprimento());
-        response.setAltura(comodo.getAltura());
-        response.setLargura(comodo.getLargura());
+        BeanUtils.copyProperties(comodo, response);
         return response;
     }
 
