@@ -1,6 +1,7 @@
-package neves.cristiano.primeirospring.controller;
+package neves.cristiano.primeirospring.view;
 
 import lombok.RequiredArgsConstructor;
+import neves.cristiano.primeirospring.controller.ComodoController;
 import neves.cristiano.primeirospring.dto.ComodoRequest;
 import neves.cristiano.primeirospring.model.Comodo;
 import neves.cristiano.primeirospring.service.ComodoService;
@@ -12,57 +13,56 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 public class ComodoViewController {
-
     private final ComodoService comodoService;
     private final ComodoController comodoController;
 
-    @RequestMapping(value = {"", "/", "/index"})
+    @RequestMapping(value = {"/comodos"})
     public String showComodoList(Model model) {
         model.addAttribute("comodos", comodoService.obterTodos());
-        return "index";
+        return "comodo-list";
     }
 
-    @GetMapping("/novo-comodo")
+    @GetMapping("/comodo-new")
     public String showNovoComodo(Comodo comodo) {
-        return "comodo";
+        return "comodo-create";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/comodo-edit/{id}")
     public String showEditComodo(@PathVariable("id") String id, Model model) {
         Comodo comodo = comodoService.obter(id);
         model.addAttribute("comodo", comodo);
-        return "update-comodo";
+        return "comodo-update";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/comodo-delete/{id}")
     public String showDeleteComodo(@PathVariable("id") String id, Model model) {
         Comodo comodo = comodoService.obter(id);
         model.addAttribute("comodo", comodo);
-        return "excluir-comodo";
+        return "comodo-excluir";
     }
 
     @PostMapping("/excluir/{id}")
     public String deleteComodo(@PathVariable("id") String id) {
         comodoController.delete(id);
-        return "redirect:/";
+        return "redirect:/comodos";
     }
 
-    @PostMapping("/addcomodo")
+    @PostMapping("/comodo-add")
     public String addComodo(Comodo comodo, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "comodo";
+            return "comodo-create";
         }
 
         comodoService.criar(comodo);
-        return "redirect:/";
+        return "redirect:/comodos";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping("/comodo-save/{id}")
     public String updateComodo(@PathVariable("id") String id, Comodo comodo,
                                BindingResult result, Model model) {
         if (result.hasErrors()) {
             comodo.setId(id);
-            return "update-comodo";
+            return "comodo-update";
         }
 
         ComodoRequest comodoRequest = new ComodoRequest();
@@ -72,9 +72,6 @@ public class ComodoViewController {
         comodoRequest.setLargura(comodo.getLargura());
 
         comodoController.update(comodo.getId(), comodoRequest);
-        return "redirect:/index";
+        return "redirect:/comodos";
     }
-
-
-
 }
